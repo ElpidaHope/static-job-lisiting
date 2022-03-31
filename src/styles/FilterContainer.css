@@ -1,0 +1,42 @@
+.filter-container {
+  background-color: var(--Light-Grayish-Cyan-Filter);
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  display: none;
+}
+
+.all-filters {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.each-filter {
+  display: flex;
+  align-items: center;
+  background-color: hsl(180,29%, 90%);
+  gap: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.each-filter p {
+  padding-left: 10px;
+  color: var(--Desaturated-Dark-Cyan);
+  font-weight: 700;
+}
+
+.each-filter img {
+  background-color: hsl(180,29%, 40%);
+  padding: 8px;
+}
+
+.filter-container > p {
+  color: var(--Dark-Grayish-Cyan);
+  font-weight: 700;
+}
