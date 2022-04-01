@@ -2,7 +2,23 @@ import '../styles/Job.css';
 
 import { nanoid } from 'nanoid';
 
+import { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+
 const Job = ({job}) => {
+  const { addFilter, filters, getFilteredData } = useContext(GlobalContext);
+
+  // const { role, level, languages, tools } = job
+  // const containedData = [role, level, languages, tools ].flat();
+  // console.log(containedData)
+  
+  const handleButtonClick = (e) => {
+    addFilter(e.target.value)
+    getFilteredData()
+  }
+
+  
+
   return (
     <div className={`job ${job.featured ? `feature-border` : null}`}>
       <img src={job.logo} alt="" />
@@ -22,10 +38,16 @@ const Job = ({job}) => {
         </div>
       </div>
       <div className="tools">
-        <button>{job.role}</button>
-        <button>{job.level}</button>
-        {job.tools.map(tool => (<button key={nanoid()}>{tool}</button>))}
-        {job.languages.map(language => (<button key={nanoid()}>{language}</button>))}
+        <button 
+          value={job.role}
+          onClick={handleButtonClick}>{job.role}</button>
+        <button 
+          value={job.level}
+          onClick={handleButtonClick}>{job.level}</button>
+        {job.tools.map(tool => (<button key={nanoid()} value={tool} onClick={handleButtonClick}>{tool}</button>))}
+        {job.languages.map(language => (<button key={nanoid()} value={language} onClick={handleButtonClick}>{language}</button>))}
+
+        <button onClick={() => getFilteredData()}>test</button>
       </div>
     </div>
   )

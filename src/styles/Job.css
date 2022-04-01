@@ -90,4 +90,39 @@
   color: var(--Desaturated-Dark-Cyan);
   font-weight: 700;
   font-family: inherit;
+  cursor: pointer;
+}
+
+.tools button:hover {
+  background-color: var(--Desaturated-Dark-Cyan);
+  color: white;
+}
+
+.role:hover {
+  cursor: pointer;
+  color: var(--Desaturated-Dark-Cyan);
+}
+
+@media (min-width:768px) {
+  .job > img {
+    position: static;
+    width: 90px;
+  }
+
+  .job {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tools {
+    margin-left: auto;
+  }
+
+  .details {
+    border: none;
+  }
+
+  .job-list {
+    gap: 30px;
+  }
 }

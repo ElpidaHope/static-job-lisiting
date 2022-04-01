@@ -1,13 +1,17 @@
 import Job from './Job';
-import { companyData } from '../data';
-const JobList = () => {
 
+import { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+
+const JobList = () => {
+  const {jobs, filteringData, isFiltering} = useContext(GlobalContext)
+  const usedData = isFiltering ? filteringData : jobs
  
   return (
     <div className='job-list'>
-      {companyData.map(job => <Job job={job} key={job.id}/>)}
+      {usedData.map(job => <Job job={job} key={job.id}/>)}
     </div>
   )
 }
 
-export default JobList
+export default JobList;

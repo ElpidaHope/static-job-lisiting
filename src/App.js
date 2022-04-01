@@ -1,17 +1,19 @@
 import FilterContainer from './components/FilterContainer';
-import Job from './components/Job';
 import JobList from './components/JobList';
 
 import bgMobile from './images/bg-header-mobile.svg';
 import bgDesktop from './images/bg-header-desktop.svg';
 
+import { GlobalProvider } from './context/GlobalState';
+
 import './App.css';
 
 function App() {
   return (
-    <>
+    <GlobalProvider>
       <div className="header">
-        <img src={bgMobile} alt="" />
+        <img src={bgMobile} alt="" id='mobile'/>
+        <img src={bgDesktop} alt="" id='desktop'/>
       </div>
       <div className="container">
         <div className="content">
@@ -21,7 +23,7 @@ function App() {
           <JobList />
         </div>
       </div>
-    </>
+    </GlobalProvider>
   );
 }
 
