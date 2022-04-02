@@ -5,7 +5,7 @@ const AppReducer = (state, action) => {
     case 'ADD_FILTER':
       return {
         ...state,
-        filters: [...state.filters, state.filters.includes(action.payload) ? '' : action.payload]
+        filters: [...state.filters, state.filters.includes(action.payload) ? '' : action.payload].filter(filter => filter !== '')
       }
     case 'CLEAR_FILTER':
       return {
@@ -14,26 +14,37 @@ const AppReducer = (state, action) => {
         isFiltering: false
       }
     case 'GET_FILTERED_DATA':
-      // const getId = state.companyData.filter(job => {
-      //   const { role, level, languages, tools } = job
-      //   const containedData = [role, level, languages, tools ].flat();
-      //   const filtered = action.payload[0].every(filter => (
-      //     containedData.includes(filter)
-      //   ))
-      //   return filtered && job.id
-      // })
-      // console.log(getId)
       return {
         ...state,
         isFiltering: true,
         filteringData: [...state.companyData.filter(job => {
           const { role, level, languages, tools } = job
           const containedData = [role, level, languages, tools ].flat();
-          const filtered = action.payload.every(filter => (
+          const filtered = state.filters.every(filter => (
             containedData.includes(filter)
           ))
           return filtered && job
-        })]
+        })],
+      }
+    
+    case 'REMOVE_FILTER':
+      return {
+        ...state,
+        filters: state.filters.filter((filter,index) => index !== action.payload),
+        isFiltering: true
+      }
+
+    case 'GET_DATA_REMOVE_FILTER':
+      return {
+        ...state,
+        filteringData: [...state.companyData.filter(job => {
+          const { role, level, languages, tools } = job
+          const containedData = [role, level, languages, tools ].flat();
+          const filtered = state.filters.every(filter => (
+            containedData.includes(filter)
+          ))
+          return filtered && job
+        })],
       }
   }
 }

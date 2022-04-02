@@ -19,7 +19,6 @@ function App() {
         <div className="content">
           <FilterContainer />
           <div style={{height: '80px', width: '100%'}}></div>
-          {/* <Job /> */}
           <JobList />
         </div>
       </div>

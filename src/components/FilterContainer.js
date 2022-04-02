@@ -7,14 +7,19 @@ import { GlobalContext } from '../context/GlobalState';
 import { nanoid } from 'nanoid';
 
 const FilterContainer = () => {
-  const { filters, clearFilter } = useContext(GlobalContext);
+  const { filters, clearFilter, removeFilter, getDataRemove } = useContext(GlobalContext);
+  const handleRemoveFilter = (index) => {
+    removeFilter(index);
+    getDataRemove()
+  }
+  
   return (
-    <div className='filter-container'>
+    filters.length>0 && <div className='filter-container'>
       <div className='all-filters'>
-        {filters.map(filter => (
+        {filters.map((filter,index) => (
           <div className='each-filter' key={nanoid()}>
             <p>{filter}</p>
-            <img src={iconClose} alt=""/>
+            <img src={iconClose} alt="" onClick={handleRemoveFilter(index)}/>
           </div>
         ))}
       </div>

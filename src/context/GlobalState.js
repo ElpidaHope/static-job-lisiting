@@ -32,20 +32,35 @@ export const GlobalProvider = ({ children }) => {
   const getFilteredData = () => {
     dispatch({
       type: 'GET_FILTERED_DATA',
-      payload: state.filters
     })
   }
 
+  const removeFilter = (id) => {
+    dispatch({
+      type: 'REMOVE_FILTER',
+      payload: id
+    })
+  }
+
+  const getDataRemove = () => {
+    dispatch({
+      type: 'GET_DATA_REMOVE_FILTER'
+    })
+  }
+
+  
   return (
     <GlobalContext.Provider value={
       {
         jobs: state.companyData,
         filteringData: state.filteringData,
         isFiltering : state.isFiltering,
-        filters: state.filters.filter(filter => filter !== ''),
+        filters: state.filters,
         addFilter,
         clearFilter,
-        getFilteredData
+        getFilteredData,
+        removeFilter,
+        getDataRemove
       }
     }>
       {children}

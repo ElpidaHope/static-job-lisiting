@@ -6,51 +6,44 @@ import { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 const Job = ({job}) => {
-  const { addFilter, filters, getFilteredData } = useContext(GlobalContext);
-
-  // const { role, level, languages, tools } = job
-  // const containedData = [role, level, languages, tools ].flat();
-  // console.log(containedData)
+  const { addFilter, getFilteredData } = useContext(GlobalContext);
+  const { logo, featured, company, position, postedAt, contract, location, role, level, tools, languages } = job
   
   const handleButtonClick = (e) => {
     addFilter(e.target.value)
     getFilteredData()
   }
 
-  
-
   return (
-    <div className={`job ${job.featured ? `feature-border` : null}`}>
-      <img src={job.logo} alt="" />
+    <div className={`job ${featured ? `feature-border` : null}`}>
+      <img src={logo} alt="" />
       <div className="details">
         <div className="company">
-          <p className="company-name">{job.company}</p>
+          <p className="company-name">{company}</p>
           {job.new ? <p className="new">New!</p> : null}
-          {job.featured ? <p className="featured">Featured</p> : null}
+          {featured ? <p className="featured">Featured</p> : null}
         </div>
-        <h4 className="role">{job.position}</h4>
+        <h4 className="role">{position}</h4>
         <div className="timing">
-          <small className='posted-at'>{job.postedAt}</small>
+          <small className='posted-at'>{postedAt}</small>
           <span>.</span>
-          <small className='type'>{job.contract}</small>
+          <small className='type'>{contract}</small>
           <span>.</span>
-          <small className="location">{job.location}</small>
+          <small className="location">{location}</small>
         </div>
       </div>
       <div className="tools">
         <button 
-          value={job.role}
-          onClick={handleButtonClick}>{job.role}</button>
+          value={role}
+          onClick={handleButtonClick}>{role}</button>
         <button 
-          value={job.level}
-          onClick={handleButtonClick}>{job.level}</button>
-        {job.tools.map(tool => (<button key={nanoid()} value={tool} onClick={handleButtonClick}>{tool}</button>))}
-        {job.languages.map(language => (<button key={nanoid()} value={language} onClick={handleButtonClick}>{language}</button>))}
-
-        <button onClick={() => getFilteredData()}>test</button>
+          value={level}
+          onClick={handleButtonClick}>{level}</button>
+        {tools.map(tool => (<button key={nanoid()} value={tool} onClick={handleButtonClick}>{tool}</button>))}
+        {languages.map(language => (<button key={nanoid()} value={language} onClick={handleButtonClick}>{language}</button>))}
       </div>
     </div>
   )
 }
 
-export default Job
+export default Job;
