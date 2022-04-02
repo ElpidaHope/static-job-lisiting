@@ -5,7 +5,7 @@ const AppReducer = (state, action) => {
     case 'ADD_FILTER':
       return {
         ...state,
-        filters: [...state.filters, state.filters.includes(action.payload) ? '' : action.payload].filter(filter => filter !== '')
+        filters: [...state.filters, state.filters && state.filters.includes(action.payload) ? '' : action.payload].filter(filter => filter !== '')
       }
     case 'CLEAR_FILTER':
       return {

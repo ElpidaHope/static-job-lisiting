@@ -12,7 +12,7 @@ const Job = ({job}) => {
   const handleButtonClick = (e) => {
     addFilter(e.target.value)
     getFilteredData()
-  }
+  } 
 
   return (
     <div className={`job ${featured ? `feature-border` : null}`}>
